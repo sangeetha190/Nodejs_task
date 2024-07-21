@@ -1,26 +1,108 @@
-const User = require("../models/user");
+// routes/users.js
 
+const User = require("../models/user");
 const router = require("express").Router();
 
-// get all the user data
-// router.get("/", async (req, res) => {
-//   try {
-//     const users = await User.find().limit(5);
-//     res.status(200).json(users);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Server error" });
-//   }
-// });
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - firstName
+ *         - lastName
+ *         - age
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the user
+ *         firstName:
+ *           type: string
+ *           description: First name of the user
+ *         lastName:
+ *           type: string
+ *           description: Last name of the user
+ *         age:
+ *           type: integer
+ *           description: Age of the user
+ *         city:
+ *           type: string
+ *           description: City of the user
+ *         state:
+ *           type: string
+ *           description: State of the user
+ *         zip:
+ *           type: integer
+ *           description: Zip code of the user
+ *         email:
+ *           type: string
+ *           description: Email of the user
+ *         web:
+ *           type: string
+ *           description: Website of the user
+ *       example:
+ *         firstName: James
+ *         lastName: Butt
+ *         age: 70
+ *         city: New Orleans
+ *         state: LA
+ *         zip: 70116
+ *         email: jbutt@gmail.com
+ *         web: http://www.bentonjohnbjr.com
+ */
 
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: API for managing users
+ */
+
+/**
+ * @swagger
+ * /users:
+ *   get:
+ *     summary: Returns the list of all users
+ *     tags: [Users]
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: The page number for pagination
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: The number of users to return per page
+ *       - in: query
+ *         name: search
+ *         schema:
+ *           type: string
+ *         description: A search term to filter users by first or last name
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *         description: Sort order (e.g., 'firstName' or '-firstName' for descending)
+ *     responses:
+ *       200:
+ *         description: The list of users
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ */
 router.get("/", async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1; // Default to page 1
-    const limit = parseInt(req.query.limit) || 5; // Default limit is 5
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
     const search = req.query.search || "";
     const sort = req.query.sort || "";
 
-    // Build search query
     const searchQuery = {
       $or: [
         { firstName: { $regex: search, $options: "i" } },
@@ -28,7 +110,6 @@ router.get("/", async (req, res) => {
       ],
     };
 
-    // Build sort object
     let sortObject = {};
     if (sort) {
       const sortField = sort.startsWith("-") ? sort.slice(1) : sort;
@@ -36,13 +117,11 @@ router.get("/", async (req, res) => {
       sortObject[sortField] = sortOrder;
     }
 
-    // Fetch users with search, sorting, pagination, and limit
     const users = await User.find(searchQuery)
       .sort(sortObject)
       .limit(limit)
       .skip((page - 1) * limit);
 
-    // Respond with the users
     res.status(200).json(users);
   } catch (error) {
     console.error(error);
@@ -50,7 +129,28 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST endpoint to create a new user
+/**
+ * @swagger
+ * /users:
+ *   post:
+ *     summary: Create a new user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       201:
+ *         description: The user was successfully created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Bad request
+ */
 router.post("/", async (req, res) => {
   const user = new User({
     firstName: req.body.firstName,
@@ -66,7 +166,6 @@ router.post("/", async (req, res) => {
 
   try {
     const newUser = await user.save();
-    //   res.status(201).json(newUser);
     res.status(201).json({
       message: "User created successfully",
       user: newUser,
@@ -76,7 +175,29 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET endpoint to get details of a specific user by ID
+/**
+ * @swagger
+ * /users/{id}:
+ *   get:
+ *     summary: Get the user by id
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user id
+ *     responses:
+ *       200:
+ *         description: The user description by id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: The user was not found
+ */
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -89,7 +210,37 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// PUT endpoint to update details of a specific user by ID
+/**
+ * @swagger
+ * /users/{id}:
+ *   put:
+ *     summary: Update the user by the id
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: The user was updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: The user was not found
+ *       500:
+ *         description: Some error happened
+ */
 router.put("/:id", async (req, res) => {
   try {
     const userId = req.params.id;
@@ -99,7 +250,6 @@ router.put("/:id", async (req, res) => {
       age: req.body.age,
     };
 
-    // Update the user
     const user = await User.findByIdAndUpdate(userId, updates, {
       new: true,
       runValidators: true,
@@ -118,7 +268,26 @@ router.put("/:id", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
-// DELETE endpoint to delete a specific user by ID
+
+/**
+ * @swagger
+ * /users/{id}:
+ *   delete:
+ *     summary: Remove the user by id
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The user id
+ *     responses:
+ *       200:
+ *         description: The user was deleted
+ *       404:
+ *         description: The user was not found
+ */
 router.delete("/:id", async (req, res) => {
   try {
     const userId = req.params.id;

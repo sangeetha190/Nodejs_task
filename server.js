@@ -1,4 +1,5 @@
 const express = require("express");
+const { swaggerUi, swaggerSpec } = require("./swagger");
 const app = express();
 
 // Access the env variable
@@ -11,6 +12,9 @@ connectDB();
 
 app.use(cors());
 app.use(express.json());
+
+// Serve the OpenAPI documentation
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/api", apiRouter);
 app.get("/", (req, res) => res.send("API is running !!!!"));
