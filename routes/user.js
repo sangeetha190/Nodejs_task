@@ -57,6 +57,7 @@ const router = require("express").Router();
  * tags:
  *   name: Users
  *   description: API for managing users
+ *   https://nodejs-task-dug8.onrender.com/api-docs/#/
  */
 
 /**
@@ -153,9 +154,9 @@ router.get("/", async (req, res) => {
  */
 router.post("/", async (req, res) => {
   const user = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    companyName: req.body.companyName,
+    firstName: req.body.first_name,
+    lastName: req.body.last_name,
+    companyName: req.body.company_name,
     age: req.body.age,
     city: req.body.city,
     state: req.body.state,
@@ -245,8 +246,8 @@ router.put("/:id", async (req, res) => {
   try {
     const userId = req.params.id;
     const updates = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      firstName: req.body.first_name,
+      lastName: req.body.last_name,
       age: req.body.age,
     };
 
