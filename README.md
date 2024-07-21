@@ -13,12 +13,27 @@ Clone the repository:
 - npm start
   
 ## Usage and Endpoints
-- GET https://nodejs-task-dug8.onrender.com/api/users: Retrieve a list of users with optional pagination, search, and sorting.
+1. `GET /api/users` - To list the users.
+
+    - Response with HTTP status code 200 on success
+    - https://nodejs-task-dug8.onrender.com/api/users
+      
+      <img width="1167" alt="Screen Shot 2024-07-21 at 5 32 46 PM" src="https://github.com/user-attachments/assets/698423b0-7faa-4fd2-9a66-7509d439c76b">
+
+-  Retrieve a list of users with optional pagination, search, and sorting.
+   
+      <img width="1180" alt="Screen Shot 2024-07-21 at 5 36 58 PM" src="https://github.com/user-attachments/assets/c9ed72e7-d9f1-4626-82a4-fe804e93c155">
+
+2. `POST /api/users` - To create a new user
+
+   
 - POST https://nodejs-task-dug8.onrender.com/api/users: Create a new user.
 - GET https://nodejs-task-dug8.onrender.com/api/users/{id}: Retrieve a user by ID.
 - PUT https://nodejs-task-dug8.onrender.com/api/users/{id}: Update a user by ID.
 - DELETE https://nodejs-task-dug8.onrender.com/api/users/{id}: Delete a user by ID.
 - use the postman to check this
+  
+
 
 ## Questions and Answers
 
