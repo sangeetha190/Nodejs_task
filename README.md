@@ -48,8 +48,7 @@ I used the following tools, frameworks, and libraries:
 
 7. Did you make certain assumptions and decisions around the application? Please elaborate on your reasonings.
 Yes, I made the following assumptions and decisions:
-
-User Data Structure: I assumed a basic structure for user data with fields like firstName, lastName, age, etc., based on typical user management requirements.
+ User Data Structure: I assumed a basic structure for user data with fields like firstName, lastName, age, etc., based on typical user management requirements.
 Error Handling: Implemented generic error handling for simplicity and to cover common scenarios like not found and server errors.
 API Design: Followed RESTful principles to design the API endpoints for clear and predictable interactions.
 Environment Configuration: Assumed the use of environment variables for configuration to separate code from configuration details.
