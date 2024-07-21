@@ -1,4 +1,4 @@
-## User Management API
+<img width="1173" alt="Screen Shot 2024-07-21 at 5 54 16 PM" src="https://github.com/user-attachments/assets/80fb3e18-1327-409e-9700-e8c7c27c5aa7">## User Management API
 This project is a simple API for managing users using Node.js, Express, and MongoDB. It includes endpoints for creating, retrieving, updating, and deleting users.
 
 Setup and Installation
@@ -20,20 +20,39 @@ Clone the repository:
       
       <img width="1167" alt="Screen Shot 2024-07-21 at 5 32 46 PM" src="https://github.com/user-attachments/assets/698423b0-7faa-4fd2-9a66-7509d439c76b">
 
--  Retrieve a list of users with optional pagination, search, and sorting.
+    -  Retrieve a list of users with optional pagination, search, and sorting.
    
       <img width="1180" alt="Screen Shot 2024-07-21 at 5 36 58 PM" src="https://github.com/user-attachments/assets/c9ed72e7-d9f1-4626-82a4-fe804e93c155">
 
 2. `POST /api/users` - To create a new user
-
    
-- POST https://nodejs-task-dug8.onrender.com/api/users: Create a new user.
-- GET https://nodejs-task-dug8.onrender.com/api/users/{id}: Retrieve a user by ID.
-- PUT https://nodejs-task-dug8.onrender.com/api/users/{id}: Update a user by ID.
-- DELETE https://nodejs-task-dug8.onrender.com/api/users/{id}: Delete a user by ID.
-- use the postman to check this
-  
+     - https://nodejs-task-dug8.onrender.com/api/users
+    
+      <img width="1171" alt="Screen Shot 2024-07-21 at 5 47 39 PM" src="https://github.com/user-attachments/assets/f2462319-0e67-472f-828e-3cdd088b65f4">
 
+4. `GET /api/users/{id}` - To get the details of a user using **ID**
+
+    - Here `{id}` would be the user ID in path parameter
+    - Response with HTTP status code 200 on success
+
+    <img width="1173" alt="Screen Shot 2024-07-21 at 5 50 11 PM" src="https://github.com/user-attachments/assets/ce17c0b6-bbfa-475f-99d5-8d8d0aed48b9">
+
+5. `PUT /api/users/{id}` - To update the details of a user
+
+     - Here `{id}` would be the user ID in path parameter
+     - Request Payload should be like in json format for updating first name, last name and age:-
+     
+    <img width="1174" alt="Screen Shot 2024-07-21 at 5 52 07 PM" src="https://github.com/user-attachments/assets/324c02eb-c707-42e7-a6b8-18c74a690498">
+
+6. `DELETE /api/users/{id}` - To delete the user
+
+    - Here {id} will be the id of the user in path parameter
+    - Response with HTTP status code 204 on success
+
+     <img width="1173" alt="Screen Shot 2024-07-21 at 5 54 16 PM" src="https://github.com/user-attachments/assets/8f665a8b-c8f4-4633-8a8f-805c4ea48bff">
+
+   - Used Thunder Client to check this **API**
+  
 
 ## Questions and Answers
 
