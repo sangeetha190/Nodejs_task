@@ -58,19 +58,19 @@ Clone the repository:
 ## Questions and Answers
 
 1. How long did it take you to complete this assignment?
-This assignment took me approximately 2hours to complete.
+This assignment took me approximately 2hours and 1hour for documentation total 3hours to complete.
 
 2. What about this assignment did you find most challenging?
 The most challenging part of this assignment was integrating Swagger for API documentation.
 
 3. What about this assignment did you find unclear?
-The instructions for mention specific part, e.g., setting up the OpenAPI documentation or implementing certain API features were a bit unclear initially. However, after some research and trial and error, I was able to understand and implement them.
+The instructions for mention specific part, setting up the OpenAPI documentation or implementing certain API features were a bit unclear initially. However, after some research and trial and error, I was able to understand and implement them.
 
 4. What challenges did you face that you did not expect?
 I didn't face any unexpected challenges during this assignment.
 
 5. Do you feel like this assignment has an appropriate level of difficulty?
-Yes, I feel that this assignment has an appropriate level of difficulty. It effectively tests knowledge of Node.js, Express, MongoDB, and API documentation, while also challenging problem-solving and debugging skills.
+Yes, I feel that this assignment has an appropriate level of medium. It effectively tests knowledge of Node.js, Express, MongoDB, and API documentation.
 
 6. Briefly explain your decisions to use tools, frameworks, and libraries.
 I used the following tools, frameworks, and libraries:
