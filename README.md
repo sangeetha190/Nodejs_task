@@ -20,7 +20,7 @@ Clone the repository:
 - DELETE https://nodejs-task-dug8.onrender.com/api/users/{id}: Delete a user by ID.
 - use the postman to check this
 
-##Questions and Answers
+## Questions and Answers
 
 1. How long did it take you to complete this assignment?
 This assignment took me approximately 2hours to complete.
