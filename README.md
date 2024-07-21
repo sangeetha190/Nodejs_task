@@ -1,4 +1,5 @@
-<img width="1173" alt="Screen Shot 2024-07-21 at 5 54 16 PM" src="https://github.com/user-attachments/assets/80fb3e18-1327-409e-9700-e8c7c27c5aa7">## User Management API
+
+## User Management API
 This project is a simple API for managing users using Node.js, Express, and MongoDB. It includes endpoints for creating, retrieving, updating, and deleting users.
 
 Setup and Installation
